@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="lib/inject.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="angular.inject.js"></script>
+    <script src="test.js"></script>
+</head>
+<body ng-app="test">
+    <div>
+        Outer: {{__resolve('key') == 'outer'}}
+    </div>
+    <div ng-controller="InnerController as ctrl">
+        <div>Inner: {{__resolve('key') == 'inner'}}</div>
+        <div>Controller: {{ctrl.resolved}}</div>
+        <div>Returns resolve: {{ctrl.hasResolve}}</div>
+    </div>
+    <div directive>Directive: {{resolved}}</div>
+    <div isolated-scope></div>
+    <div>Filter: {{'outer' | resolved }}</div>
+</body>
+</html>
