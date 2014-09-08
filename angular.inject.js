@@ -4,11 +4,11 @@ angular.module('angular.inject', [])
         var ngInjector = angular.extend({}, $injector);
 
         Scope.prototype.inject = function (registrations, parentResolve) {
-            if (this == $rootScope && !parentResolve)
+            if (this == $rootScope)
                 this.__resolve = inject(registrations, inject.fallback(function (key) {
                     if (ngInjector.has(key))
                         return ngInjector.get(key);
-                }));
+                }, parentResolve));
             else
                 this.__resolve = inject(registrations, parentResolve);
 
