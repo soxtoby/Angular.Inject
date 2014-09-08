@@ -44,9 +44,7 @@ angular.module('angular.inject', [])
 
         function dependant(fn) {
             return Array.isArray(fn)
-                ? inject.dependant(fn.slice(0, -1), function () {
-                        return fn.slice(-1)[0].apply(this, arguments);
-                    })
+                ? inject.dependant(fn.slice(0, -1), fn.slice(-1)[0])
                 : fn;
         }
 
